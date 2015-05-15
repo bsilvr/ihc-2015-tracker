@@ -13,6 +13,18 @@
     SupportedOrientations="Portrait" Orientation="Portrait"
     shell:SystemTray.IsVisible="True">
 
+    <phone:PhoneApplicationPage.Resources>
+        <shell:ApplicationBar x:Key="DefaultAppBar" IsVisible="True">
+            <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/add.png" IsEnabled="True" Text="Add Sensor" Click="AddSensor_Click"/>
+            <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/feature.settings.png" IsEnabled="True" Text="Settings"/>
+        </shell:ApplicationBar>
+        <shell:ApplicationBar x:Key="SelectedAppBar" IsVisible="True">
+            <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/delete.png" IsEnabled="True" Text="Delete Sensor"/>
+            <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/edit.png" IsEnabled="True" Text="Edit Sensor"/>
+            <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/basecircle.png" IsEnabled="True" Text="Show Map"/>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.Resources>
+
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <Grid.RowDefinitions>

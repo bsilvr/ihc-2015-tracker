@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.Storage;
 using System.IO;
+using System.Windows.Media;
 
 namespace ProjectoIHC.DataModel
 {
@@ -14,7 +15,7 @@ namespace ProjectoIHC.DataModel
     {
         public string ID { get; set; }
         public string Title { get; set; }
-        public string TitleColor { get; set; }
+        public SolidColorBrush TitleColor { get; set; }
         public double Latitude { get; set; }
         public double Longitude { get; set; }
     }

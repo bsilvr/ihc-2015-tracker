@@ -17,11 +17,12 @@ namespace ProjectoIHC
         public MainPage()
         {
             InitializeComponent();
-
+            ApplicationBar = (Microsoft.Phone.Shell.ApplicationBar)Resources["DefaultAppBar"];
             // Sample code to localize the ApplicationBar
             //BuildLocalizedApplicationBar();
         }
 
+<<<<<<< 65de9d08c44d1b978667b394cce0e25801939c59
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
             string latitude = Convert.ToString(40.630339);
@@ -47,5 +48,11 @@ namespace ProjectoIHC
         //    ApplicationBarMenuItem appBarMenuItem = new ApplicationBarMenuItem(AppResources.AppBarMenuItemText);
         //    ApplicationBar.MenuItems.Add(appBarMenuItem);
         //}
+=======
+        private void AddSensor_Click(object sender, EventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/AddSensor.xaml", UriKind.Relative));
+        }
+>>>>>>> 51b9af8374e5fb90dcde0fe599e79bb824eb7016
     }
 }

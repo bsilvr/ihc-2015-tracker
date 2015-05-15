@@ -22,6 +22,16 @@ namespace ProjectoIHC
             //BuildLocalizedApplicationBar();
         }
 
+        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
+        {
+            string latitude = Convert.ToString(40.630339);
+            string longitude = Convert.ToString(-8.657356);
+            string sensor="Dog";
+
+            string arg = String.Format("?label={0}&latitude={1}&longitude={2}", sensor, latitude, longitude);
+            NavigationService.Navigate(new Uri("/ViewMap.xaml" + arg, UriKind.Relative));
+        }
+
         // Sample code for building a localized ApplicationBar
         //private void BuildLocalizedApplicationBar()
         //{

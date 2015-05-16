@@ -15,14 +15,14 @@ namespace ProjectoIHC.DataModel
     {
         public string ID { get; set; }
         public string Title { get; set; }
-        public SolidColorBrush TitleColor { get; set; }
+        public string TitleColor { get; set; }
         public double Latitude { get; set; }
         public double Longitude { get; set; }
     }
 
     public class DataSource
     {
-        private ObservableCollection<Sensor> _sensors;
+        private ObservableCollection<Sensor> _sensors = new ObservableCollection<Sensor>();
 
         const string fileName = "sensors_list.json";
 
@@ -42,7 +42,7 @@ namespace ProjectoIHC.DataModel
 
         private async Task getSensorsDataAsync()
         {
-            if (_sensors.Count == 0)
+            if (_sensors.Count != 0)
                 return;
 
             var jsonSerializer = new DataContractJsonSerializer(typeof(ObservableCollection<Sensor>));

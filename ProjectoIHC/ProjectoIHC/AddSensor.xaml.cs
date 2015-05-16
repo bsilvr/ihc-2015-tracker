@@ -9,6 +9,8 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using System.Windows.Media;
 using ProjectoIHC.DataModel;
+using System.ComponentModel;
+using System.Globalization;
 
 namespace ProjectoIHC
 {
@@ -25,12 +27,17 @@ namespace ProjectoIHC
             InitializeComponent();
 
             this.sen.Title = SensorTitle;
-            this.sen.TitleColor = SensorColor;
+            this.sen.TitleColor = SensorColor.Color.ToString();
             this.sen.ID = SensorID;
             this.sen.Latitude = 0.00;
             this.sen.Longitude = 0.00;
 
-            this.ColorSelected.Fill = sen.TitleColor;
+            byte a = byte.Parse(sen.TitleColor.Substring(1, 2), NumberStyles.HexNumber);
+            byte r = byte.Parse(sen.TitleColor.Substring(3, 2), NumberStyles.HexNumber);
+            byte g = byte.Parse(sen.TitleColor.Substring(5, 2), NumberStyles.HexNumber);
+            byte b = byte.Parse(sen.TitleColor.Substring(7, 2), NumberStyles.HexNumber);
+
+            this.ColorSelected.Fill = new SolidColorBrush(Color.FromArgb(a,r,g,b));
             this.ID.Text = sen.ID;
             this.Title.Text = sen.Title;
            
@@ -50,35 +57,35 @@ namespace ProjectoIHC
             {
                 SolidColorBrush SensorColor = new SolidColorBrush(Color.FromArgb(255, 0x16, 0xa0, 0x85));
                 this.ColorSelected.Fill = SensorColor;
-                this.sen.TitleColor = SensorColor;
+                this.sen.TitleColor = "#FF00FF00";
             }
 
             if (colorName.Equals("ColorBlue"))
             {
                 SolidColorBrush SensorColor = new SolidColorBrush(Color.FromArgb(255, 0x29, 0x80, 0xb9));
                 this.ColorSelected.Fill = SensorColor;
-                this.sen.TitleColor = SensorColor;
+                this.sen.TitleColor = "#FF0000FF";
             }
 
             if (colorName.Equals("ColorOrange"))
             {
                 SolidColorBrush SensorColor = new SolidColorBrush(Color.FromArgb(255, 0xf3, 0x9c, 0x12));
                 this.ColorSelected.Fill = SensorColor;
-                this.sen.TitleColor = SensorColor;
+                this.sen.TitleColor = "#FFFF9900";
             }
 
             if (colorName.Equals("ColorRed"))
             {
                 SolidColorBrush SensorColor = new SolidColorBrush(Color.FromArgb(255, 0xc0, 0x39, 0x2b));
                 this.ColorSelected.Fill = SensorColor ;
-                this.sen.TitleColor = SensorColor;
+                this.sen.TitleColor = "#FFFF0000";
             }
 
             if (colorName.Equals("ColorGray"))
             {
                 SolidColorBrush SensorColor = new SolidColorBrush(Color.FromArgb(255, 0xbd, 0xc3, 0xc7));
                 this.ColorSelected.Fill = SensorColor;
-                this.sen.TitleColor = SensorColor;
+                this.sen.TitleColor = "FF808080";
             }
         }
 
@@ -107,7 +114,9 @@ namespace ProjectoIHC
 
         private void AddSensor_Click(object sender, EventArgs e)
         {
-            App.DataModel.AddSensor(this.sen);
+            App.DataModel.AddSensor(sen);
+            NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
+
         }
     }
 }

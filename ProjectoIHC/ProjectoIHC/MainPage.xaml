@@ -39,9 +39,18 @@
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+        <ScrollViewer Grid.Row="1">
+            <Grid x:Name="ContentPanel" Margin="12,0,12,0">
+                <phone:LongListSelector ItemsSource="{Binding}" SelectionChanged="LongListSelector_SelectionChanged">
+                    <phone:LongListSelector.ItemTemplate>
+                        <DataTemplate>
+                            <TextBox Text="{Binding Title}" Style="{StaticResource PhoneTextTitle1Style}"/>
+                        </DataTemplate>
+                    </phone:LongListSelector.ItemTemplate>
 
-        </Grid>
+                </phone:LongListSelector>
+            </Grid>
+        </ScrollViewer>
     </Grid>
 
 </phone:PhoneApplicationPage>

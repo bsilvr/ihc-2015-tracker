@@ -18,6 +18,7 @@ namespace ProjectoIHC
     public partial class EditSensor : PhoneApplicationPage
     {
         Sensor sen = new Sensor();
+        Sensor old = new Sensor();
         
         SolidColorBrush SensorColor = new SolidColorBrush(Color.FromArgb(255, 0x16, 0xa0, 0x85));
         String SensorTitle = "";
@@ -26,13 +27,11 @@ namespace ProjectoIHC
         public EditSensor()
         {
             InitializeComponent();
-
-            
-           
         }
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e) 
         {
+            
             base.OnNavigatedTo(e);
             double latitude = 0;
             double longitude = 0;
@@ -43,27 +42,30 @@ namespace ProjectoIHC
             if (NavigationContext.QueryString.TryGetValue("cor", out tmp))
             {
                 color = "#" + tmp;
-
+                old.TitleColor = color;
             }
 
             if (NavigationContext.QueryString.TryGetValue("sensorID", out tmp))
             {
                 SensorID = tmp;
+                old.ID = SensorID;
             }
             if (NavigationContext.QueryString.TryGetValue("label", out tmp))
             {
                 SensorTitle = tmp;
+                old.Title = SensorTitle;
             }
 
             if (NavigationContext.QueryString.TryGetValue("latitude", out tmp))
             {
                 latitude = Convert.ToDouble(tmp);
-
+                old.Latitude = latitude;
             }
 
             if (NavigationContext.QueryString.TryGetValue("longitude", out tmp))
             {
                 longitude = Convert.ToDouble(tmp);
+                old.Longitude = longitude;
             }
 
            
@@ -86,8 +88,11 @@ namespace ProjectoIHC
 
         private void Cancel_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Are you sure?", "Cancel?", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
-                NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
+            if (MessageBox.Show("Are you sure?", "Cancel?", MessageBoxButton.OKCancel) == MessageBoxResult.OK) 
+            {
+                App.DataModel.AddSensor(old);                
+                NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));                
+            }
         }
 
         private void ChooseColor_Click(object sender, RoutedEventArgs e)

@@ -19,9 +19,9 @@
             <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/feature.settings.png" IsEnabled="True" Text="Settings"/>
         </shell:ApplicationBar>
         <shell:ApplicationBar x:Key="SelectedAppBar" IsVisible="True">
-            <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/delete.png" IsEnabled="True" Text="Delete Sensor"/>
-            <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/edit.png" IsEnabled="True" Text="Edit Sensor"/>
-            <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/basecircle.png" IsEnabled="True" Text="Show Map"/>
+            <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/delete.png" IsEnabled="True" Text="Delete Sensor" Click="ApplicationBarIconButton_Click"/>
+            <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/edit.png" IsEnabled="True" Text="Edit Sensor" Click="ApplicationBarIconButton_Click_2"/>
+            <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/feature.search.png" IsEnabled="True" Text="Show Map" Click="ApplicationBarIconButton_Click_1"/>
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.Resources>
 
@@ -40,16 +40,31 @@
 
         <!--ContentPanel - place additional content here-->
         <ScrollViewer Grid.Row="1">
-            <Grid x:Name="ContentPanel" Margin="12,0,12,0">
-                <phone:LongListSelector ItemsSource="{Binding}" SelectionChanged="LongListSelector_SelectionChanged">
-                    <phone:LongListSelector.ItemTemplate>
-                        <DataTemplate>
-                            <TextBox Text="{Binding Title}" Style="{StaticResource PhoneTextTitle1Style}"/>
-                        </DataTemplate>
-                    </phone:LongListSelector.ItemTemplate>
 
-                </phone:LongListSelector>
-            </Grid>
+            <phone:LongListSelector Name="myList" ItemsSource="{Binding}" SelectionChanged="LongListSelector_SelectionChanged" LostFocus="myList_LostFocus">
+                <phone:LongListSelector.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Background="{Binding HighlightBackgroundColor}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="60"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Text="{Binding Title}" Style="{StaticResource PhoneTextTitle1Style}"/>
+                                <Ellipse Grid.Column="1" Fill="{Binding TitleColor}" Height="50" Width="50" VerticalAlignment="Center"/>
+                                <Button Grid.Column="2" Click="selected_Click" BorderThickness="0" VerticalAlignment="Center" Opacity="0">
+                                    <Image Source="Assets/AppBar/unselect.png" Width="50" Height="50"/>
+                      
+                     
+                                </Button>
+                            </Grid>
+                            
+                        </StackPanel>
+                    </DataTemplate>
+                </phone:LongListSelector.ItemTemplate>
+
+            </phone:LongListSelector>
         </ScrollViewer>
     </Grid>
 

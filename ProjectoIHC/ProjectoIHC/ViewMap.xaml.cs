@@ -9,6 +9,9 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using Windows.Devices.Geolocation;
 using System.Device.Location;
+using Microsoft.Phone.Maps.Controls;
+using System.Windows.Media;
+using System.Windows.Shapes;
 
 namespace ProjectoIHC
 {
@@ -49,6 +52,21 @@ namespace ProjectoIHC
             pos.Longitude = longitude;
 
             myMap.SetView(pos, 17D);
+
+            MapOverlay overlay = new MapOverlay
+            {
+                GeoCoordinate = new GeoCoordinate(latitude, longitude),
+                Content = new Ellipse
+                {
+                    Fill = new SolidColorBrush(Colors.Red),
+                    Width = 40,
+                    Height = 40
+                }
+            };
+            MapLayer layer = new MapLayer();
+            layer.Add(overlay);
+
+            myMap.Layers.Add(layer);
         }
     }
 }

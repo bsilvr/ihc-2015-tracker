@@ -11,10 +11,11 @@ using System.Windows.Media;
 using ProjectoIHC.DataModel;
 using System.ComponentModel;
 using System.Globalization;
+using System.Windows.Controls.Primitives;
 
 namespace ProjectoIHC
 {
-    public partial class AddSensor : PhoneApplicationPage
+    public partial class EditSensor : PhoneApplicationPage
     {
         Sensor sen = new Sensor();
         
@@ -22,25 +23,65 @@ namespace ProjectoIHC
         String SensorTitle = "";
         String SensorID = "";
         
-        public AddSensor()
+        public EditSensor()
         {
             InitializeComponent();
 
+            
+           
+        }
+
+        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e) 
+        {
+            base.OnNavigatedTo(e);
+            double latitude = 0;
+            double longitude = 0;
+            string tmp;
+            string color = "";
+
+            //color = NavigationContext.QueryString["color"];
+            if (NavigationContext.QueryString.TryGetValue("cor", out tmp))
+            {
+                color = "#" + tmp;
+
+            }
+
+            if (NavigationContext.QueryString.TryGetValue("sensorID", out tmp))
+            {
+                SensorID = tmp;
+            }
+            if (NavigationContext.QueryString.TryGetValue("label", out tmp))
+            {
+                SensorTitle = tmp;
+            }
+
+            if (NavigationContext.QueryString.TryGetValue("latitude", out tmp))
+            {
+                latitude = Convert.ToDouble(tmp);
+
+            }
+
+            if (NavigationContext.QueryString.TryGetValue("longitude", out tmp))
+            {
+                longitude = Convert.ToDouble(tmp);
+            }
+
+           
+
             this.sen.Title = SensorTitle;
-            this.sen.TitleColor = SensorColor.Color.ToString();
+            this.sen.TitleColor = color;
             this.sen.ID = SensorID;
-            this.sen.Latitude = 0.00;
-            this.sen.Longitude = 0.00;
+            this.sen.Latitude = latitude;
+            this.sen.Longitude = longitude;
 
             byte a = byte.Parse(sen.TitleColor.Substring(1, 2), NumberStyles.HexNumber);
             byte r = byte.Parse(sen.TitleColor.Substring(3, 2), NumberStyles.HexNumber);
             byte g = byte.Parse(sen.TitleColor.Substring(5, 2), NumberStyles.HexNumber);
             byte b = byte.Parse(sen.TitleColor.Substring(7, 2), NumberStyles.HexNumber);
 
-            this.ColorSelected.Fill = new SolidColorBrush(Color.FromArgb(a,r,g,b));
+            this.ColorSelected.Fill = new SolidColorBrush(Color.FromArgb(a, r, g, b));
             this.ID.Text = sen.ID;
             this.Title.Text = sen.Title;
-           
         }
 
         private void Cancel_Click(object sender, EventArgs e)
@@ -124,7 +165,7 @@ namespace ProjectoIHC
             }
         }
 
-        private void AddSensor_Click(object sender, EventArgs e)
+        private void EditSensor_Click(object sender, EventArgs e)
         {
             sen.Title = this.Title.Text;
 
@@ -150,7 +191,15 @@ namespace ProjectoIHC
             }
             App.DataModel.AddSensor(sen);
             NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
+            //var mySensor = myList.SelectedItem as Sensor;
+        }
 
+        private void BtnFindSensor_Click(object sender, RoutedEventArgs e)
+        {
+            Popup codePopup = new Popup();
+            TextBlock popupText = new TextBlock();
+            popupText.Text = "Popup Text";
+            codePopup.Child = popupText;
         }
     }
 }

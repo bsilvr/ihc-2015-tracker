@@ -8,16 +8,57 @@ using System.Threading.Tasks;
 using Windows.Storage;
 using System.IO;
 using System.Windows.Media;
+using System.ComponentModel;
 
 namespace ProjectoIHC.DataModel
 {
-    public class Sensor
+    public class Sensor : INotifyPropertyChanged
     {
         public string ID { get; set; }
         public string Title { get; set; }
         public string TitleColor { get; set; }
+
+        
         public double Latitude { get; set; }
         public double Longitude { get; set; }
+
+        private bool _is_selected;
+
+        public Sensor() 
+        {
+            this.IsSelected = false;
+            this.NonHighlightColor = new SolidColorBrush(Colors.Transparent);
+            this.HighLightColor = new SolidColorBrush(Colors.Red);
+        }
+
+        public bool IsSelected
+        {
+            get { return _is_selected; }
+            set
+            {
+                _is_selected = value;
+                OnPropertyChanged("HighlightBackgroundColor");
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged(string name)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (handler != null)
+            {
+                handler(this, new PropertyChangedEventArgs(name));
+            }
+        }
+
+        public SolidColorBrush HighlightBackgroundColor
+        {
+            get { if (IsSelected) return HighLightColor; else return NonHighlightColor; }
+        }
+
+        private SolidColorBrush HighLightColor { get; set; }
+
+        private SolidColorBrush NonHighlightColor { get; set; }
     }
 
     public class DataSource
@@ -62,6 +103,8 @@ namespace ProjectoIHC.DataModel
 
         public async void AddSensor(Sensor sensor)
         {
+            if (_sensors == null)
+                _sensors = new ObservableCollection<Sensor>();
             _sensors.Add(sensor);
             await saveSensorDataAsync();
         }

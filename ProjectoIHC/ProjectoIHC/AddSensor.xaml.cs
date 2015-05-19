@@ -99,19 +99,19 @@ namespace ProjectoIHC
             SensorID = this.ID.Text;
             this.sen.ID = SensorID;
 
-            if (SensorID.Equals("XX2A-DF2A-CS4E-12A3") )
+            if (string.Equals(SensorID, "XX2A-DF2A-CS4E-12A3", StringComparison.OrdinalIgnoreCase))
             {
                 MessageBox.Show("Connected Successfully!");
             }
-            else if (SensorID.Equals("12A3-DF2A-XX2A-CS4E"))
+            else if (string.Equals(SensorID, "12A3-DF2A-XX2A-CS4E", StringComparison.OrdinalIgnoreCase))
             {
                 MessageBox.Show("Connected Successfully!");
             }
-            else if (SensorID.Equals("98AS-876S-ASD7-AD54"))
+            else if (string.Equals(SensorID, "98AS-876S-ASD7-AD54", StringComparison.OrdinalIgnoreCase))
             {
                 MessageBox.Show("Connected Successfully!");
             }
-            else if (SensorID.Equals("ZXDC-XDER-432D-3445"))
+            else if (string.Equals(SensorID, "ZXDC-XDER-432D-3445", StringComparison.OrdinalIgnoreCase))
             {
                 MessageBox.Show("Connected Successfully!");
             }
@@ -128,22 +128,22 @@ namespace ProjectoIHC
         {
             sen.Title = this.Title.Text;
 
-            if (SensorID.Equals("XX2A-DF2A-CS4E-12A3"))
+            if (string.Equals(SensorID, "XX2A-DF2A-CS4E-12A3", StringComparison.OrdinalIgnoreCase))
             {
                 sen.Latitude = 40.603004;
                 sen.Longitude = -8.642174;
             }
-            else if (SensorID.Equals("12A3-DF2A-XX2A-CS4E"))
+            else if (string.Equals(SensorID, "12A3-DF2A-XX2A-CS4E", StringComparison.OrdinalIgnoreCase))
             {
                 sen.Latitude = 40.603804;
                 sen.Longitude = -8.642174;
             }
-            else if (SensorID.Equals("98AS-876S-ASD7-AD54"))
+            else if (string.Equals(SensorID, "98AS-876S-ASD7-AD54", StringComparison.OrdinalIgnoreCase))
             {
                 sen.Latitude = 40.603850;
                 sen.Longitude = -8.642024;
             }
-            else if (SensorID.Equals("ZXDC-XDER-432D-3445"))
+            else if (string.Equals(SensorID, "ZXDC-XDER-432D-3445", StringComparison.OrdinalIgnoreCase))
             {
                 sen.Latitude = 40.603434;
                 sen.Longitude = -8.643474;

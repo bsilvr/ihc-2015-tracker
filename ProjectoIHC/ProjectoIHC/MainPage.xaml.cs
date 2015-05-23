@@ -10,6 +10,7 @@ using Microsoft.Phone.Shell;
 using ProjectoIHC.Resources;
 using System.Windows.Media;
 using ProjectoIHC.DataModel;
+using System.ComponentModel;
 
 namespace ProjectoIHC
 {
@@ -106,6 +107,16 @@ namespace ProjectoIHC
                 App.DataModel.AddSensor(mySensor);
             }
             
+        }
+
+        protected override void OnBackKeyPress(CancelEventArgs e)
+        {
+            if (MessageBox.Show("Are you sure you want to exit?", "Confirm Exit?",
+                                    MessageBoxButton.OKCancel) != MessageBoxResult.OK)
+            {
+                e.Cancel = true;
+
+            }
         }
     }
 }

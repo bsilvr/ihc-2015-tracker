@@ -232,8 +232,9 @@ namespace ProjectoIHC
                 Content = sp,
                 Opacity = 0.98,
 
-                LeftButtonContent = "Clear",
-                RightButtonContent = "Select",
+
+                RightButtonContent = "Clear",
+                LeftButtonContent = "Select",
             };
 
             cmb.Dismissing += cmb_Dismissing;
@@ -252,11 +253,11 @@ namespace ProjectoIHC
 
         void cmb_Dismissing(object sender, DismissingEventArgs e)
         {
-            if (e.Result == CustomMessageBoxResult.LeftButton)
+            if (e.Result == CustomMessageBoxResult.RightButton)
             {
                 this.ID.Text = "";
             }
-            if (e.Result == CustomMessageBoxResult.RightButton)
+            if (e.Result == CustomMessageBoxResult.LeftButton)
             {
                 this.ID.Text = ((ListPickerItem)lp.SelectedItem).Content.ToString();
             }

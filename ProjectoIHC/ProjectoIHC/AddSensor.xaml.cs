@@ -21,6 +21,10 @@ namespace ProjectoIHC
         SolidColorBrush SensorColor = new SolidColorBrush(Color.FromArgb(255, 0x16, 0xa0, 0x85));
         String SensorTitle = "";
         String SensorID = "";
+
+        ListPicker lp;
+        StackPanel sp;
+        CustomMessageBox cmb;
         
         public AddSensor()
         {
@@ -152,5 +156,55 @@ namespace ProjectoIHC
             NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
 
         }
+
+        private void FindSensors_Click(object sender, RoutedEventArgs e)
+        {
+            sp = new StackPanel() { Orientation = System.Windows.Controls.Orientation.Vertical };
+
+            lp = new ListPicker();
+
+            lp.Items.Add(new ListPickerItem() { Content = "XX2A-DF2A-CS4E-12A3" });
+            lp.Items.Add(new ListPickerItem() { Content = "12A3-DF2A-XX2A-CS4E" });
+            lp.Items.Add(new ListPickerItem() { Content = "ZXDC-XDER-432D-3445" });
+
+            sp.Children.Add(lp);
+
+            TiltEffect.SetIsTiltEnabled(sp, true);
+
+            cmb = new CustomMessageBox()
+            {
+                Content = sp,
+                Opacity = 0.98,
+
+                LeftButtonContent = "Clear",
+                RightButtonContent = "Select",
+            };
+
+            cmb.Dismissing += cmb_Dismissing;
+            lp.SelectionChanged += lp_SelectionChanged;
+
+            cmb.Show();
+        }
+
+        void lp_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (lp.SelectedItem != null)
+            {
+                this.ID.Text = ((ListPickerItem)lp.SelectedItem).Content.ToString();
+            }
+        }
+
+        void cmb_Dismissing(object sender, DismissingEventArgs e)
+        {
+            if (e.Result == CustomMessageBoxResult.LeftButton)
+            {
+                this.ID.Text = "";
+            }
+            if (e.Result == CustomMessageBoxResult.RightButton)
+            {
+                this.ID.Text = ((ListPickerItem)lp.SelectedItem).Content.ToString();
+            }
+        }
+
     }
 }

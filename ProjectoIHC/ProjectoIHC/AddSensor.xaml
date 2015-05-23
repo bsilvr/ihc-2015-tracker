@@ -6,6 +6,7 @@
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -48,7 +49,7 @@
             <Button x:Name="ColorRed" HorizontalAlignment="Left" Margin="308,166,0,0" VerticalAlignment="Top" Click="ChooseColor_Click" Height="50" BorderThickness="1" Background="#c0392b" Width="50"/>
             <Button x:Name="ColorGray" HorizontalAlignment="Left" Margin="406,166,0,0" VerticalAlignment="Top" Click="ChooseColor_Click" Height="50" BorderThickness="1" Background="#bdc3c7" Width="50"/>
             <Rectangle x:Name="ColorSelected" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="52" Margin="10,221,0,0" Stroke="Black" VerticalAlignment="Top" Width="436"/>
-            <Button x:Name="BtnFindSensor" Content="Find Sensors" HorizontalAlignment="Left" Margin="-3,415,0,0" VerticalAlignment="Top" Width="183" Visibility="Collapsed"/>
+            <Button x:Name="BtnFindSensor" Content="Find Sensors" HorizontalAlignment="Left" Margin="-3,415,0,0" VerticalAlignment="Top" Width="183" Click="FindSensors_Click"/>
             <TextBox x:Name="ID" HorizontalAlignment="Left" Height="72" Margin="0,338,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="374"/>
             <TextBlock HorizontalAlignment="Left" Margin="10,306,0,0" TextWrapping="Wrap" Text="Sensor ID:" VerticalAlignment="Top"/>
             <Button x:Name="BtnCheckSensor" Content="Check Sensor" HorizontalAlignment="Left" Margin="186,415,0,0" VerticalAlignment="Top" Width="188" Click="CheckSensor_Click"/>

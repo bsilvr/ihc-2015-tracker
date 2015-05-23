@@ -19,6 +19,7 @@
             <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/feature.settings.png" IsEnabled="True" Text="Settings"/>
         </shell:ApplicationBar>
         <shell:ApplicationBar x:Key="SelectedAppBar" IsVisible="True">
+            <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/add.png" IsEnabled="True" Text="Add Sensor" Click="AddSensor_Click"/>
             <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/delete.png" IsEnabled="True" Text="Delete Sensor" Click="ApplicationBarIconButton_Click"/>
             <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/edit.png" IsEnabled="True" Text="Edit Sensor" Click="ApplicationBarIconButton_Click_2"/>
             <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/feature.search.png" IsEnabled="True" Text="Show Map" Click="ApplicationBarIconButton_Click_1"/>

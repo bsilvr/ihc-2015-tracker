@@ -163,6 +163,7 @@ namespace ProjectoIHC
             {
                 NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
             }
+ 
         }
 
         private void FindSensors_Click(object sender, RoutedEventArgs e)

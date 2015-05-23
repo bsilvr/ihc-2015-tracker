@@ -12,6 +12,7 @@ using ProjectoIHC.DataModel;
 using System.ComponentModel;
 using System.Globalization;
 using System.Windows.Controls.Primitives;
+using Windows.Phone.UI.Input;
 
 namespace ProjectoIHC
 {
@@ -92,7 +93,7 @@ namespace ProjectoIHC
 
         private void Cancel_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Are you sure?", "Cancel?", MessageBoxButton.OKCancel) == MessageBoxResult.OK) 
+            if (MessageBox.Show("Are you sure? Changes will be discarded", "Cancel?", MessageBoxButton.OKCancel) == MessageBoxResult.OK) 
             {
                 App.DataModel.AddSensor(old);                
                 NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));                
@@ -201,6 +202,15 @@ namespace ProjectoIHC
             App.DataModel.AddSensor(sen);
             NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
             //var mySensor = myList.SelectedItem as Sensor;
+        }
+
+        protected override void OnBackKeyPress(System.ComponentModel.CancelEventArgs e)
+        {
+            if (MessageBox.Show("Are you sure? Changes will be discarded", "Cancel?", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+            {
+                App.DataModel.AddSensor(old);
+                NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
+            }
         }
 
         private void FindSensors_Click(object sender, RoutedEventArgs e)

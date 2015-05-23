@@ -157,6 +157,14 @@ namespace ProjectoIHC
 
         }
 
+        protected override void OnBackKeyPress(System.ComponentModel.CancelEventArgs e)
+        {
+            if (MessageBox.Show("Sensor will not be saved! Are you sure?", "Cancel?", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+            {
+                NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
+            }
+        }
+
         private void FindSensors_Click(object sender, RoutedEventArgs e)
         {
             sp = new StackPanel() { Orientation = System.Windows.Controls.Orientation.Vertical };

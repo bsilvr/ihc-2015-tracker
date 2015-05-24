@@ -16,7 +16,6 @@
     <phone:PhoneApplicationPage.Resources>
         <shell:ApplicationBar x:Key="DefaultAppBar" IsVisible="True">
             <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/add.png" IsEnabled="True" Text="Add Sensor" Click="AddSensor_Click"/>
-            <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/feature.settings.png" IsEnabled="True" Text="Settings"/>
         </shell:ApplicationBar>
         <shell:ApplicationBar x:Key="SelectedAppBar" IsVisible="True">
             <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/add.png" IsEnabled="True" Text="Add Sensor" Click="AddSensor_Click"/>

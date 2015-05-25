@@ -96,7 +96,7 @@ namespace ProjectoIHC
             if (MessageBox.Show("Are you sure? Changes will be discarded", "Cancel?", MessageBoxButton.OKCancel) == MessageBoxResult.OK) 
             {
                 App.DataModel.AddSensor(old);                
-                NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));                
+                NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));               
             }
         }
 
@@ -211,6 +211,7 @@ namespace ProjectoIHC
                 App.DataModel.AddSensor(old);
                 NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
             }
+            e.Cancel = true;
         }
 
         private void FindSensors_Click(object sender, RoutedEventArgs e)

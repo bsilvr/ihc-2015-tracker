@@ -111,11 +111,12 @@ namespace ProjectoIHC
 
         protected override void OnBackKeyPress(CancelEventArgs e)
         {
+            e.Cancel = true;
             if (MessageBox.Show("Are you sure you want to exit?", "Confirm Exit?",
-                                    MessageBoxButton.OKCancel) != MessageBoxResult.OK)
+                                    MessageBoxButton.OKCancel) == MessageBoxResult.OK)
             {
-                e.Cancel = true;
-
+                
+                Application.Current.Terminate();
             }
         }
     }
